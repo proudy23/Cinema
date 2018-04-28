@@ -1,0 +1,63 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="page-header">
+    <h1>
+        Search screen
+    </h1>
+    <p>
+        <?php echo $this->tag->linkTo(["screen/new", "Create screen"]) ?>
+    </p>
+</div>
+
+<?php echo $this->getContent() ?>
+
+<?php
+    echo $this->tag->form(
+        [
+            "screen/search",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        ]
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldId" class="col-sm-2 control-label">Id</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["id", "type" => "number", "class" => "form-control", "id" => "fieldId"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldArea" class="col-sm-2 control-label">Area</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["area", "size" => 30, "class" => "form-control", "id" => "fieldArea"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldFloor" class="col-sm-2 control-label">Floor</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["floor", "type" => "number", "class" => "form-control", "id" => "fieldFloor"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldRecliner" class="col-sm-2 control-label">Recliner</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["recliner", "type" => "number", "class" => "form-control", "id" => "fieldRecliner"]) ?>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(["Search", "class" => "btn btn-default"]) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

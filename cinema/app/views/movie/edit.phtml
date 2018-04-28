@@ -1,0 +1,77 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="row">
+    <nav>
+        <ul class="pager">
+            <li class="previous"><?php echo $this->tag->linkTo(["movie", "Back"]) ?></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="page-header">
+    <h1>
+        Edit movie
+    </h1>
+</div>
+
+<?php echo $this->getContent(); ?>
+
+<?php
+    echo $this->tag->form(
+        [
+            "movie/save",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        ]
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldMovietitle" class="col-sm-2 control-label">Movietitle</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["movietitle", "size" => 30, "class" => "form-control", "id" => "fieldMovietitle"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldMovieyear" class="col-sm-2 control-label">Movieyear</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["movieyear", "size" => 30, "class" => "form-control", "id" => "fieldMovieyear"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldGenre" class="col-sm-2 control-label">Genre</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["genre", "size" => 30, "class" => "form-control", "id" => "fieldGenre"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldActors" class="col-sm-2 control-label">Actors</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["Actors", "size" => 30, "class" => "form-control", "id" => "fieldActors"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldPrice" class="col-sm-2 control-label">Price</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["price", "type" => "number", "class" => "form-control", "id" => "fieldPrice"]) ?>
+    </div>
+</div>
+
+
+<?php echo $this->tag->hiddenField("id") ?>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(["Save", "class" => "btn btn-default"]) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

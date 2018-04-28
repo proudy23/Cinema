@@ -33,21 +33,21 @@
 <div class="form-group">
     <label for="fieldBookingdate" class="col-sm-2 control-label">Bookingdate</label>
     <div class="col-sm-10">
-        <?php echo $this->tag->textField(["bookingdate", "type" => "date", "class" => "form-control", "id" => "fieldBookingdate"]) ?>
+        <?php echo $this->tag->Datefield(["bookingdate", "type" => "date", "class" => "form-control", "id" => "fieldBookingdate"]) ?>
     </div>
 </div>
 
 <div class="form-group">
     <label for="fieldStarttime" class="col-sm-2 control-label">Starttime</label>
     <div class="col-sm-10">
-        <?php echo $this->tag->textField(["starttime", "size" => 30, "class" => "form-control", "id" => "fieldStarttime"]) ?>
+        <?php echo $this->tag->timefield(["starttime", "size" => 30, "class" => "form-control", "id" => "fieldStarttime"]) ?>
     </div>
 </div>
 
 <div class="form-group">
     <label for="fieldEndtime" class="col-sm-2 control-label">Endtime</label>
     <div class="col-sm-10">
-        <?php echo $this->tag->textField(["endtime", "size" => 30, "class" => "form-control", "id" => "fieldEndtime"]) ?>
+        <?php echo $this->tag->timefield(["endtime", "size" => 30, "class" => "form-control", "id" => "fieldEndtime"]) ?>
     </div>
 </div>
 
@@ -68,7 +68,7 @@
 <div class="form-group">
     <label for="fieldPrice" class="col-sm-2 control-label">Price</label>
     <div class="col-sm-10">
-        <?php echo $this->tag->textField(["price", "type" => "number", "class" => "form-control", "id" => "fieldPrice"]) ?>
+        <?php echo $this->tag->textfield(["price", "type" => "number", "class" => "form-control", "id" => "fieldPrice"]) ?>
     </div>
 </div>
 

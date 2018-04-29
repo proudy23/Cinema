@@ -1,7 +1,10 @@
 <?php
 use Phalcon\Validation;
-use Phalcon\Validation\Validator\Uniqueness as UniquenessValidator;
+//use Phalcon\Validation\Validator\Date as DateValidator;
+use Phalcon\Validation\Validator\Confirmation as ConfirmationValidator;
+
 class User extends \Phalcon\Mvc\Model
+
 {
 
     /**
@@ -118,6 +121,12 @@ class User extends \Phalcon\Mvc\Model
     public function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
+    }
+	public function setConfirmPassword($password)
+    {
+        $this->confirmpassword = $password;
 
         return $this;
     }
@@ -305,6 +314,7 @@ class User extends \Phalcon\Mvc\Model
     {
         return $this->validationkey;
     }
+	
 
     /**
      * Returns the value of field status
@@ -376,12 +386,22 @@ class User extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
-	public function validation()
+	public function Validation()
 	{
-	   $validator= new Validation();
-	   $uValidator = new UniquenessValidator(["message" => "this userName has already been chosen"]);
-	   $validator->add('username', $uValidator);
-	   return $this->validate($validator);
-	}
+	 
+		$validator= new Validation();
+		//$eValidator=new EmailValidator(["message" => "The email is not valid"]);//
+		//$dValidator=new DateValidator(["format" => "Y-m-d","message" =>"the date is invalid"]);
+		//$uValidator=new UniquenessValidator(["message" => "This username has already been chosen"]);
+		$cValidator=new confirmationValidator(["message" => "password doesnt match confirmation","with" => "confirmpassword"]);
+		
+		
+		//$validator->add('Username', $uvalidator);
+		//$validator->add('DateOfBirth', $dvalidator);
+		//$validator->add('emailAddress', $evalidator);
+		$validator->add('password', $cValidator);
+		return $this->validate($validator);
+    }
+
 
 }

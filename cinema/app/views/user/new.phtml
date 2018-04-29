@@ -89,6 +89,12 @@
 </div>
 
 <div class="form-group">
+    <label for="fieldPassword" class="col-sm-2 control-label">confirmPassword</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->passwordField(["confirmpassword", "size" => 30, "class" => "form-control", "id" => "fieldPassword"]) ?>
+    </div>
+
+<div class="form-group">
     <label for="fieldFirstname" class="col-sm-2 control-label">Firstname</label>
     <div class="col-sm-10">
         <?php echo $this->tag->textField(["firstname", "size" => 30, "class" => "form-control", "id" => "fieldFirstname"]) ?>

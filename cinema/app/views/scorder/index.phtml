@@ -1,0 +1,63 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="page-header">
+    <h1>
+        Search scorder
+    </h1>
+    <p>
+        <?php echo $this->tag->linkTo(["scorder/new", "Create scorder"]) ?>
+    </p>
+</div>
+
+<?php echo $this->getContent() ?>
+
+<?php
+    echo $this->tag->form(
+        [
+            "scorder/search",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        ]
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldId" class="col-sm-2 control-label">Id</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["id", "type" => "number", "class" => "form-control", "id" => "fieldId"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldOrderdate" class="col-sm-2 control-label">OrderDate</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["orderDate", "size" => 30, "class" => "form-control", "id" => "fieldOrderdate"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldDeliverycity" class="col-sm-2 control-label">DeliveryCity</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["deliveryCity", "size" => 30, "class" => "form-control", "id" => "fieldDeliverycity"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldDeliverycounty" class="col-sm-2 control-label">DeliveryCounty</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["deliveryCounty", "size" => 30, "class" => "form-control", "id" => "fieldDeliverycounty"]) ?>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(["Search", "class" => "btn btn-default"]) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

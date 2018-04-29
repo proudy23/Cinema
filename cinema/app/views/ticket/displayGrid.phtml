@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+	<ul class="list-inline nav navbar-nav navbar-right">
+		<li><button id="checkOut" type="button" class="btn btn-primary navbar-btn center-block">Check Out</button></li>
+		<li><button id="emptyCart" type="button" class="btn btn-primary navbar-btn center-block">Empty Cart</button></li>
+		<li><span style="font-size:40px;margin-right:0px;" class="glyphicon glyphicon-shopping-cart navbar-btn"></span></li>
+		<li><div class="navbar-text" id="cart" style="font-size:12pt;margin-left:0px;margin-right:0px;">0<div></li>
+		<li><div class="navbar-text" style="font-size:14pt;margin-left:0px;">Item(s)</div></li>
+	<ul>
+</nav>
+
+
+<div style="padding-top:70px" class="container"></div>
+	<!-- put the code which renders the grid in here -->
+<?php $j=0;//set a counter for the number of columns in the grid col-sm-3 means 4 columns wide?>
+<?php foreach($tickets as $ticket): ?>
+	<?php if ($j==0) echo "<div class='row'>"; //if the counter is zero start a new row?>
+	   <div class="col-sm-3">
+		  <div class="panel panel-primary">  
+			<div class="panel-heading"><?php echo $ticket->getName() ."  " . $ticket->getDescription();?></div>
+			<div class="panel-body"><img style="width:80%;height:200px;" class="img-responsive center-block" 
+				src="<?php echo $this->url->getBaseUri() . '/img/' . $ticket->getImage();?>"/></div>
+			<div class="panel-footer">
+				<button id="addItem" type="button" class="btn btn-default center-block addItem" value="<?php echo $ticket->getID();?>">Add To Cart</button>
+			</div>
+		  </div>
+		</div>
+	<?php $j++; if ($j==4) { echo "</div>"; $j=0;} //if we have 4 cols then close the div for the row and reset the counter?>
+<?php endforeach; ?>

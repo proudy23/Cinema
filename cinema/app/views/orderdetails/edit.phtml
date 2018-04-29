@@ -1,0 +1,70 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="row">
+    <nav>
+        <ul class="pager">
+            <li class="previous"><?php echo $this->tag->linkTo(["orderdetails", "Back"]) ?></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="page-header">
+    <h1>
+        Edit orderdetails
+    </h1>
+</div>
+
+<?php echo $this->getContent(); ?>
+
+<?php
+    echo $this->tag->form(
+        [
+            "orderdetails/save",
+            "autocomplete" => "off",
+            "class" => "form-horizontal"
+        ]
+    );
+?>
+
+<div class="form-group">
+    <label for="fieldProductid" class="col-sm-2 control-label">Productid</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["productid", "type" => "number", "class" => "form-control", "id" => "fieldProductid"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldOrderid" class="col-sm-2 control-label">Orderid</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["orderid", "type" => "number", "class" => "form-control", "id" => "fieldOrderid"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldQuantity" class="col-sm-2 control-label">Quantity</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["quantity", "type" => "number", "class" => "form-control", "id" => "fieldQuantity"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="fieldSubtotal" class="col-sm-2 control-label">Subtotal</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["subtotal", "type" => "number", "class" => "form-control", "id" => "fieldSubtotal"]) ?>
+    </div>
+</div>
+
+
+<?php echo $this->tag->hiddenField("id") ?>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(["Save", "class" => "btn btn-default"]) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

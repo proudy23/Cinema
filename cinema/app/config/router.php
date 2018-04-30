@@ -5,7 +5,7 @@ $router = $di->getRouter();
 
 // Define a route
 $router->add(
-    '/allUsers',
+    '/allusers',
     [
         'controller' => 'user',
         'action'     => 'search',
@@ -15,9 +15,9 @@ $router->add(
 $router->handle();
 
 $router->add(
-    '/allBookings',
+    '/alltickets',
     [
-        'controller' => 'Booking',
+        'controller' => 'Ticket',
         'action'     => 'search',
     ]
 );

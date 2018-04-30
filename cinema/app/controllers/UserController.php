@@ -16,6 +16,7 @@ class UserController extends ControllerBase
 
 	public function loginAction()
 	{
+	
 
 	}
 	
@@ -30,7 +31,7 @@ class UserController extends ControllerBase
 				['userName' => $user->getusername(), 
 				 'role' => $user->getRole()]);
 				$this->flash->success("Welcome back " . $user->getusername());
-				return $this->dispatcher->forward(["controller" => "booking","action" => "search"]);
+				return $this->dispatcher->forward(["controller" => "ticket","action" => "displayGrid"]);
 			}
 			else {
 				$this->flash->error("Your password is incorrect - try again");

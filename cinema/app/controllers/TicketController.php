@@ -235,9 +235,77 @@ class TicketController extends ControllerBase
             'action' => "index"
         ]);
     }
+	public function emptyCartAction()
+	{
+		$this->session->remove('cart');
+	}
 	public function displayGridAction()
 	{
+		if ($this->session->has('cart')) {
+			$cart = $this->session->get('cart');
+			$totalQty=0;
+			foreach ($cart as $ticket => $qty) {
+				$totalQty = $totalQty + $qty;
+			}
+			$this->view->totalItems=$totalQty;
+		}
+		else {
+			$this->view->totalItems=0;
+		}
 		$this->view->tickets = ticket::find();
 	}
-
+	public function addItemAction()
+	{
+		$ticketid = $this->request->getPost('ticketid');
+		if ($this->session->has('cart')) {
+			$cart = $this->session->get('cart');
+			if (isset($cart[$ticketid])) {
+				$cart[$ticketid]=$cart[$ticketid]+1; //add one to product in cart
+			}
+			else {
+				$cart[$ticketid]=1; //new product in cart
+			}
+		}
+		else {
+			$cart[$ticketid]=1; //new cart
+		}
+		$this->session->set('cart',$cart); // make the cart a session variable
+	}
+	public function checkOutAction()
+	{
+		if ($this->session->has('cart')) {
+			$cart = $this->session->get('cart');
+			$lineitems = array();
+			foreach ($cart as $ticketid => $qty) {
+				$lineitem['ticket'] = Ticket::findFirstByid($ticketid);
+				$lineitem['qty'] = $qty;
+				$lineitems[] = $lineitem;
+			}
+			$this->view->lineitems = $lineitems;
+		}
+		else {
+			$this->flash->error("There are no items in your cart");
+			$this->dispatcher->forward(['controller' => "ticket",'action' => 'displayGrid']);
+		}
+	}
+	public function placeOrderAction()
+	{
+		$thisOrder = new Scorder();
+		$thisOrder->setOrderDate((new DateTime())->format("Y-m-d H:i:s"));
+		$thisOrder->save();
+		$orderID = $thisOrder->getId();
+		
+		$ticketids = $this->request->getPost("ticketid");
+		$quantities = $this->request->getPost("quantity");
+		for($i=0;$i<sizeof($productids);$i++) {
+			$thisOrderDetail = new OrderDetail();
+			$thisOrderDetail->setOrderid($orderID);
+			$thisOrderDetail->setTicketid($ticketids[$i]);
+			$thisOrderDetail->setQuantity($quantities[$i]);
+			$thisOrderDetail->save();
+		}
+		$this->session->remove('cart');
+		$this->flash->success("The Order has been placed");
+		$this->dispatcher->forward(["controller" => "ticket", "action" => "displayGrid"]);
+	}
 }

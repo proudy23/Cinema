@@ -1,0 +1,81 @@
+<H2>Place Order</h2>
+<?php echo $this->getContent(); ?>
+<?php
+    echo $this->tag->form(["customer/index","autocomplete" => "off", "class" => "form-horizontal"]);
+?>
+<table class="table table-condensed table-bordered">
+	<thead>
+		<tr><th>Id</th><th>Name</th><th>Description</th><th>Price</th><th>Quantity</th></tr></thead>
+	<tbody>
+	<?php $ttlCost=0; $ttlQty=0;?>
+	<?php foreach ($lineitems as $lineitem): ?>
+		<?php $ticket=$lineitem['ticket']; ?>	 
+		<tr>
+			<td><input size="3" style="border:none" type="text" name="ticketid[]" readonly value="<?php echo $ticket->getId()?>"></td>
+			<td><?php echo $ticket->getName() ?></td>
+			<td><?php echo $ticket->getDescription() ?></td>
+			<td><div class="price"><?php echo $ticket->getPrice() ?></div></td>
+			<td>
+				<input size="3" style="border:none" class="qty" type="text" name="quantity[]" readonly value="<?php echo $lineitem['qty'] ?>">
+			</td>
+			<td>
+				<button type="button" class="btn btn-default add"><span class="glyphicon glyphicon-plus"/></button>
+				<button type="button" class="btn btn-default subtract"><span class="glyphicon glyphicon-minus"/></button>
+				<button type="button" class="btn btn-default value="remove" onClick="$(this).closest('tr').remove();"><span class="glyphicon glyphicon-remove"/></button>
+			</td>
+			<?php
+				$ttlQty = $ttlQty + $lineitem['qty'];
+				$ttlCost = $ttlCost + ($ticket->getPrice()*$lineitem['qty']);	
+			?>
+		</tr>
+	<?php endforeach; ?>
+	
+	</tbody>
+</table>
+</table>
+<script>
+$(".btn.add").click(function () {
+	var i=$(this).val();
+	var row = $(this).closest('tr');
+	var qty = row.find('.qty');
+	var quantity = parseInt(qty.val());
+	quantity = quantity + 1;
+	var ttlQty = parseInt($('#ttlQty').text());
+	ttlQty = ttlQty + 1;
+	$('#ttlQty').text(ttlQty);
+	$(qty).val(quantity);
+	*calcTotal();*
+});
+$(".btn.subtract").click(function () {
+	var i=$(this).val();
+	
+	var row = $(this).closest('tr');
+	var qty = row.find('.qty');
+	var quantity = parseInt(qty.val());
+	if (quantity>1) {
+		quantity = quantity - 1;
+		var ttlQty = parseInt($('#ttlQty').text());
+		ttlQty = ttlQty + 1;
+		$('#ttlQty').text(ttlQty);
+	}
+	$(qty).val(quantity);
+	*calcTotal();*
+});
+function calcTotal() {
+	var total=0;
+	$('.qty').each(function(i){
+		var qty = $(this).val();
+		var price = parseInt($('.price').eq(i).text());
+		total = total + (price * qty);
+	});
+	$('#ttlCost').text(total);
+}
+
+
+</script>
+<table class="table table-bordered">
+	<TR><Td>Total Quantity:</TD><td><div id="ttlQty"><?php echo $ttlQty;?></div></td></TR>
+	<TR><Td>Total Cost:</TD><td><div id="ttlCost"><?php echo $ttlCost;?></div></td></TR>
+</table>
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>

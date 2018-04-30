@@ -1,16 +1,18 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+</nav>
+<nav class="navbar navbar-default navbar-fixed-top"> 
 	<ul class="list-inline nav navbar-nav navbar-right">
-		<li><button id="checkOut" type="button" class="btn btn-primary navbar-btn center-block">Check Out</button></li>
+		<li><a href="/cinema/Booking/search"><li><span class="glyphicon glyphicon-film"></span>  Cinema</a> </li>
+		<li><a href="/cinema/user/login"><span class="glyphicon glyphicon-lock"></span> Log out</a></li>
+		<li><a href="/cinema/ticket/checkOut"><span class="glyphicon glyphicon-share"></span> Check Out</a></li>
 		<li><button id="emptyCart" type="button" class="btn btn-primary navbar-btn center-block">Empty Cart</button></li>
-		<li><span style="font-size:40px;margin-right:0px;" class="glyphicon glyphicon-shopping-cart navbar-btn"></span></li>
-		<li><div class="navbar-text" id="cart" style="font-size:12pt;margin-left:0px;margin-right:0px;">0<div></li>
-		<li><div class="navbar-text" style="font-size:14pt;margin-left:0px;">Item(s)</div></li>
+		<li><span style="font-size:30px;margin-right:0px;" class="glyphicon glyphicon-shopping-cart navbar-btn"></span></li>
+		<li><div class="navbar-text" id="cart" style="font-size:12pt;margin-left:0px;margin-right:0px;"><?php echo $totalItems;?><div></li>
+		<li><div class="navbar-text" style="font-size:13pt;margin-left:0px;">Item(s)</div></li>
 	<ul>
 </nav>
 
 
-<div style="padding-top:70px" class="container"></div>
-	<!-- put the code which renders the grid in here -->
+
 <?php $j=0;//set a counter for the number of columns in the grid col-sm-3 means 4 columns wide?>
 <?php foreach($tickets as $ticket): ?>
 	<?php if ($j==0) echo "<div class='row'>"; //if the counter is zero start a new row?>
@@ -26,3 +28,36 @@
 		</div>
 	<?php $j++; if ($j==4) { echo "</div>"; $j=0;} //if we have 4 cols then close the div for the row and reset the counter?>
 <?php endforeach; ?>
+<script>
+$(".bth,.addItem").click(function() {
+	var total = parseInt($('#cart').text());
+	var i=$(this).val();
+	$('#cart').text(total);
+	$.ajax({
+	  type: "POST",
+	  url: "/cinema/ticket/addItem",
+	  data: "ticketid=" + i,
+	  dataType: "html",
+	  success: function() {
+		  total=total+1;
+		  $('#cart').text(total);
+	  },
+	  error: function() {
+		  alert("problem communicating with the server");
+	  }
+	});
+});
+$("#emptyCart").click(function() {
+	$.ajax({
+	  type: "get",
+	  url: "/cinema/ticket/emptyCart",
+	  success: function() {
+		  $('#cart').text(0);
+	  },
+	  error: function() {
+		  alert("problem communicating with the server");
+	  }
+	});
+});
+</script>
+

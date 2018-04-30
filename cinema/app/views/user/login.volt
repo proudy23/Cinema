@@ -2,7 +2,7 @@
 <div class="page-header">
 	<h3>Log In</h3>
 </div>
-{{ form('booking/search', 'role': 'form') }}
+{{ form('user/authorize', 'role': 'form') }}
 	<fieldset>
 		<div class="form-group">
 			<label for="username">Username</label>

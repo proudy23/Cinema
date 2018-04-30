@@ -64,6 +64,7 @@
     echo $this->tag->form(
         [
             "user/create",
+			"cinema/displayGrid",
             "autocomplete" => "off",
             "class" => "form-horizontal"
         ]
@@ -115,8 +116,8 @@
     </div>
 </div>
 
-	<p><b> Already registered?</b></p>
-	<p> Login in on the NavBar above</p>
+<p><b> Already registered?, Login Below</b></p>
+<li><a href="/cinema/user/login"><span class="glyphicon glyphicon-lock"></span> Log in</a></li>
 
 <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

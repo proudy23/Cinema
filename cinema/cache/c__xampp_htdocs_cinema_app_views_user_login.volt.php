@@ -2,7 +2,7 @@
 <div class="page-header">
 	<h3>Log In</h3>
 </div>
-<?= $this->tag->form(['booking/search', 'role' => 'form']) ?>
+<?= $this->tag->form(['user/authorize', 'role' => 'form']) ?>
 	<fieldset>
 		<div class="form-group">
 			<label for="username">Username</label>

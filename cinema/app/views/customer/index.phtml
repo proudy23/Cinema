@@ -4,74 +4,58 @@
  */
 ?>
 
-<div class="page-header">
-    <h1>
-        Search customer
-    </h1>
-    <p>
-        <?php echo $this->tag->linkTo(["customer/new", "Create customer"]) ?>
-    </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>We are looking forward to seeing you soon!</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron">
+  <h1>Your booking has completed!</h1>     
+<h2>in the mean time</h2>  
+  <p> enjoy the mock movie below</p>
+
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+ <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+  <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">            
+
+        <div class="item active">
+             <div align="center">
+               <video autoplay loop>
+                 <source src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" width="1024" height="552" type="video/mp4">
+                 Your browser does not support the video tag.
+              </video>
+          </div>
+             <div class="carousel-caption">
+              
+            </div>
+          </div> 
+            <div class="item">
+          <img src="http://dummyimage.com/1024x552/000/fff" class="img-responsive" alt="asfds">
+          <div class="carousel-caption">
+              <h3>hello</h3>
+              <p>hello.</p>
+            </div>
+        </div>
+          <a class="left carousel-control" href="#carouselHelp" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carouselHelp" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
 </div>
-
-<?php echo $this->getContent() ?>
-
-<?php
-    echo $this->tag->form(
-        [
-            "customer/search",
-            "autocomplete" => "off",
-            "class" => "form-horizontal"
-        ]
-    );
-?>
-
-<div class="form-group">
-    <label for="fieldId" class="col-sm-2 control-label">Id</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textField(["id", "type" => "number", "class" => "form-control", "id" => "fieldId"]) ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldFirstname" class="col-sm-2 control-label">Firstname</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textField(["firstname", "size" => 30, "class" => "form-control", "id" => "fieldFirstname"]) ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldSurname" class="col-sm-2 control-label">Surname</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textField(["surname", "size" => 30, "class" => "form-control", "id" => "fieldSurname"]) ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldMembertype" class="col-sm-2 control-label">Membertype</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textField(["membertype", "size" => 30, "class" => "form-control", "id" => "fieldMembertype"]) ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldDateofbirth" class="col-sm-2 control-label">Dateofbirth</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textField(["dateofbirth", "type" => "date", "class" => "form-control", "id" => "fieldDateofbirth"]) ?>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="fieldAddress" class="col-sm-2 control-label">Address</label>
-    <div class="col-sm-10">
-        <?php echo $this->tag->textField(["address", "size" => 30, "class" => "form-control", "id" => "fieldAddress"]) ?>
-    </div>
-</div>
-
-
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <?php echo $this->tag->submitButton(["Search", "class" => "btn btn-default"]) ?>
-    </div>
-</div>
-
-<?php echo $this->tag->endForm(); ?>
+</body>
+</html>
